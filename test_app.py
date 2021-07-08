@@ -24,6 +24,7 @@ def test_pred_virginica():
         # asserting the correct response is received
         assert response.status_code == 200
         assert response.json() == {"flower_class": "Iris Virginica"}
+        assert "timestamp" in response.json()
 
 # test to check if Iris Setosa is classified correctly
 def test_pred_virginica():
@@ -39,6 +40,7 @@ def test_pred_virginica():
         # asserting the correct response is received
         assert response.status_code == 200
         assert response.json() == {"flower_class": "Iris Virginica"}
+        assert "timestamp" in response.json()
 
 # test to check if Iris Versicolour is classified correctly
 def test_pred_Setosa():
@@ -54,3 +56,4 @@ def test_pred_Setosa():
         # asserting the correct response is received
         assert response.status_code == 200
         assert response.json() == {"flower_class": "Iris Setosa"}
+        assert "timestamp" in response.json()
