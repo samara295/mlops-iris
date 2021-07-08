@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
+import json
 
 # test to check the correct functioning of the /ping route
 def test_ping():
@@ -21,8 +22,7 @@ def test_pred_virginica():
     }
     with TestClient(app) as client:
         response = client.post("/predict_flower", json=payload)
-        response_json = response.json()
-        response_dict = json.loads(response_json)
+        response_dict = json.loads(response)
         # asserting the correct response is received
         assert response.status_code == 200
         assert response_dict["flower_class"] == "Iris Virginica"
