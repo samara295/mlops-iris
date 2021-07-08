@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
+import json
 
 # test to check the correct functioning of the /ping route
 def test_ping():
@@ -17,15 +18,18 @@ def test_pred_virginica():
         "sepal_length": 3,
         "sepal_width": 5,
         "petal_length": 3.2,
-        "petal_width": 4.4,
+        "petal_width": 4.4
     }
     with TestClient(app) as client:
         response = client.post("/predict_flower", json=payload)
+        
         # asserting the correct response is received
         assert response.status_code == 200
-        assert response.json() == {"flower_class": "Iris Virginica"}
+        #assert response.json() == {"flower_class": "Iris Virginica"}
+        assert "timestamp" in response.json()
 
-# test to check if Iris Setosa is classified correctly
+
+# test to check if Iris Virginica is classified correctly
 def test_pred_virginica():
     # defining a sample payload for the testcase
     payload = {
@@ -38,9 +42,10 @@ def test_pred_virginica():
         response = client.post("/predict_flower", json=payload)
         # asserting the correct response is received
         assert response.status_code == 200
-        assert response.json() == {"flower_class": "Iris Virginica"}
+        #assert response.json() == {"flower_class": "Iris Virginica"}
+        assert "timestamp" in response.json()
 
-# test to check if Iris Versicolour is classified correctly
+# test to check if Iris Setosa is classified correctly
 def test_pred_Setosa():
     # defining a sample payload for the testcase
     payload = {
@@ -53,4 +58,6 @@ def test_pred_Setosa():
         response = client.post("/predict_flower", json=payload)
         # asserting the correct response is received
         assert response.status_code == 200
-        assert response.json() == {"flower_class": "Iris Setosa"}
+        #assert response.json() == {"flower_class": "Iris Setosa"}
+        assert "timestamp" in response.json()
+
