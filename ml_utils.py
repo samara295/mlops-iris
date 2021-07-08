@@ -3,11 +3,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
 
 
 # define a Gaussain NB classifier
 #clf = GaussianNB()
-clf = DecisionTreeClassifier(random_state=0)
+#clf = DecisionTreeClassifier(random_state=0)
+clf = LogisticRegression()
 # define the class encodings and reverse encodings
 classes = {0: "Iris Setosa", 1: "Iris Versicolour", 2: "Iris Virginica"}
 r_classes = {y: x for x, y in classes.items()}
